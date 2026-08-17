@@ -4,13 +4,6 @@ import { useAuth } from "../hooks/useAuth";
 import { ErrorText } from "../components/ui";
 import { IcEye, IcEyeOff } from "../components/icons";
 
-const DEMO_ACCOUNTS = [
-  { email: "admin@secureleave.io", password: "Admin@123", label: "Administrator", tone: "tone-admin" },
-  { email: "hr@secureleave.io", password: "Hr@12345", label: "HR Officer", tone: "tone-hr" },
-  { email: "eng.manager@secureleave.io", password: "Manager@123", label: "Manager", tone: "tone-manager" },
-  { email: "dev@secureleave.io", password: "Employee@123", label: "Employee", tone: "tone-employee" },
-];
-
 export function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -32,11 +25,6 @@ export function LoginPage() {
     } finally {
       setBusy(false);
     }
-  };
-
-  const fill = (demoEmail: string, demoPassword: string) => {
-    setEmail(demoEmail);
-    setPassword(demoPassword);
   };
 
   return (
@@ -92,23 +80,6 @@ export function LoginPage() {
             {busy && <span className="spinner" />}
             {busy ? "Signing in..." : "Sign in"}
           </button>
-        </div>
-
-        <div className="demo-sec">
-          <p>Demo accounts - tap to fill</p>
-          <div className="demo-grid">
-            {DEMO_ACCOUNTS.map((account) => (
-              <button
-                key={account.email}
-                type="button"
-                className={`demo-chip ${account.tone}`}
-                onClick={() => fill(account.email, account.password)}
-              >
-                <strong>{account.label}</strong>
-                <span>{account.email}</span>
-              </button>
-            ))}
-          </div>
         </div>
       </form>
     </div>
